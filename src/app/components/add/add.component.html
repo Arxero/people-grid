@@ -4,44 +4,40 @@
 
 <form class="add-form" [formGroup]="addPersonForm" (ngSubmit)="onSubmit(addPersonForm.value)">
     <mat-form-field class="add-form">
-        <input matInput placeholder="Image URL" [formControl]="urlFormControl" required
-            [(ngModel)]='image'>
-        <mat-error *ngIf="urlFormControl.hasError('url') && !urlFormControl.hasError('required')">
+        <input matInput placeholder="Image URL" formControlName="imageUrl" required>
+        <mat-error *ngIf="imageUrl.errors?.pattern && imageUrl.touched">
             Please enter a valid URL address
         </mat-error>
-        <mat-error *ngIf="urlFormControl.hasError('required')">
+        <mat-error *ngIf="imageUrl.errors?.required">
             Image URL is <strong>required</strong>
         </mat-error>
     </mat-form-field>
 
     <mat-form-field class="add-form">
-        <input matInput placeholder="Name" [formControl]="nameFormControl" required>
-        <mat-error *ngIf="!nameFormControl.hasError('required')">
-            Please enter a valid Name
-        </mat-error>
-        <mat-error *ngIf="nameFormControl.hasError('required')">
+        <input matInput placeholder="Name" formControlName="name" required>
+        <mat-error *ngIf="name.errors?.required">
             Name is <strong>required</strong>
         </mat-error>
     </mat-form-field>
 
     <mat-form-field class="add-form">
-        <input matInput placeholder="Age" [formControl]="ageFormControl" required type="number">
-        <mat-error *ngIf="(ageFormControl.hasError('min') || ageFormControl.hasError('max')) && !ageFormControl.hasError('required')">
+        <input matInput placeholder="Age" formControlName="age" required type="number">
+        <mat-error *ngIf="(age.errors?.min || age.errors?.max) && !age.errors?.required">
             Please enter a valid Age
         </mat-error>
-        <mat-error *ngIf="ageFormControl.hasError('required')">
+        <mat-error *ngIf="age.errors?.required">
             Age is <strong>required</strong>
         </mat-error>
     </mat-form-field>
 
     <mat-form-field class="add-form">
         <mat-label>Role</mat-label>
-        <mat-select [formControl]="roleFormControl" required>
+        <mat-select formControlName="role" required>
             <mat-option *ngFor="let role of roles" [value]="role">
                 {{role}}
             </mat-option>
         </mat-select>
-        <mat-error *ngIf="roleFormControl.hasError('required')">Please choose an role</mat-error>
+        <mat-error *ngIf="role.errors?.required">Please choose a role</mat-error>
     </mat-form-field>
 
     <button [disabled]="addPersonForm.invalid" mat-raised-button color="primary" type="submit">Submit</button>
