@@ -1,1 +1,94 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import './assets/styles/reset.css';
+@import './assets/styles/variables.css';
+@import './assets/styles/typography.css';
+@import './assets/styles/forms.css';
+
+body {
+    background: #111111;
+}
+
+main {
+    background: #ebebeb;
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 3px;
+}
+
+.people-grid .person-image {
+    min-height: 184px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.people-grid .person-image img {
+    max-width: 184px;
+    border-radius: 50%;
+    transition: 200ms cubic-bezier(.08, .52, .52, 1) filter, 200ms cubic-bezier(.08, .52, .52, 1) transform, 200ms cubic-bezier(.08, .52, .52, 1) box-shadow;
+}
+
+.people-grid img:hover {
+    filter: brightness(120%);
+    filter: contrast(120%);
+    box-shadow: 3px 3px 5px -3px #000;
+    transform: scale(1.05);
+}
+
+.people-grid ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+}
+
+.people-grid li {
+    margin: 1rem;
+    flex: 1 0 25%;
+    max-width: 266px;
+}
+
+.people-grid .person-name {
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding-top: .5rem;
+}
+
+.people-grid .person-role {
+    font-size: 1.2rem;
+}
+
+.person {
+    padding: 1rem;
+    /* transition: 200ms cubic-bezier(.08, .52, .52, 1) box-shadow; */
+    transition: box-shadow .2s ease-in-out;
+}
+
+.person:hover {
+    box-shadow: 3px 3px 5px -3px #000;
+}
+
+.image-preview {
+    text-align: center;
+}
+
+.image-preview img {
+    border-radius: 2px;
+    box-shadow: 3px 3px 5px -3px #000;
+}
+
+@media screen and (min-width: 580px) {
+    .people-grid ul {
+        justify-content: flex-start;
+    }
+}
+
+
+
+
+

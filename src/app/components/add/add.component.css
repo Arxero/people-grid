@@ -1,0 +1,11 @@
+.add-form {
+    width: 100%;
+}
+
+button {
+    display: block;
+}
+
+form {
+    margin: 0 auto;
+}

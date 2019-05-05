@@ -1,0 +1,17 @@
+<mat-toolbar class="mat-toolbar" color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+
+    <span>
+        <a mat-button routerLink="/">
+            <mat-icon>people</mat-icon> People Grid
+        </a>
+        <a mat-button routerLink="/table-view">
+            <mat-icon>table_chart</mat-icon> Table View
+        </a>
+        <a mat-button routerLink="/add">
+            <mat-icon>add</mat-icon>Add
+        </a>
+    </span>
+</mat-toolbar>

@@ -1,0 +1,20 @@
+<div class="people-grid">
+    <ul>
+        <li *ngFor="let person of people">
+            <div class="person">
+                <div class="person-image">
+                    <img [src]="person.imageUrl" [alt]="person.name">
+                </div>
+                <div class="person-name">{{person.name}}</div>
+                <div class="person-role">{{person.role}}</div>
+                <div class="person-age">{{person.age}}</div>
+                <a routerLink="/edit/{{person._id}}" mat-icon-button color="primary">
+                    <mat-icon>edit</mat-icon>
+                </a>
+                <button (click)="deletePerson(person._id)" mat-icon-button color="warn">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </li>
+    </ul>
+</div>

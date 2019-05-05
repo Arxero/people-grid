@@ -1,0 +1,9 @@
+a {
+    text-decoration: none;
+    margin-left: .5rem;
+    margin-right: .5rem;
+}
+
+.mat-drawer-content {
+    background: #111111;
+}

@@ -1,0 +1,26 @@
+.mat-toolbar {
+    position: relative;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #dadada;
+}
+
+.example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+@media screen and (max-width: 600px) {
+    span {
+        display: none;
+    }
+}
