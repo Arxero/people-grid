@@ -1,6 +1,10 @@
 <div class="people-grid">
+    <mat-form-field>
+        <input matInput [(ngModel)]="searchTerm" placeholder="Filter">
+    </mat-form-field>
+
     <ul>
-        <li *ngFor="let person of people">
+        <li *ngFor="let person of people | filter:searchTerm">
             <div class="person">
                 <div class="person-image">
                     <img [src]="person.imageUrl" [alt]="person.name">

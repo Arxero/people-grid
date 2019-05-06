@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PersonService } from 'src/app/core/person.service';
 import { PersonModel } from 'src/app/core/add-person.model';
 import { MatSnackBar } from '@angular/material';
+import { FilterPipe} from '../../core/filter.pipe';
 
 @Component({
     selector: 'app-home',
