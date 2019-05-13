@@ -17,6 +17,7 @@ import { PersonService } from './core/person.service';
 import { EditComponent } from './components/edit/edit.component';
 import { TableViewComponent } from './components/table-view/table-view.component';
 import { FilterPipe } from './core/filter.pipe';
+import { PersonComponent } from './components/person/person.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { FilterPipe } from './core/filter.pipe';
         EditComponent,
         TableViewComponent,
         FilterPipe,
+        PersonComponent,
     ],
     imports: [
         BrowserModule,

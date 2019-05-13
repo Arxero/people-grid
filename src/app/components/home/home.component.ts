@@ -19,6 +19,8 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
         this.personService.getPeople().subscribe(data => {
             this.people = data
+            //this.people = this.people.sort((a, b) => a.name.toLocaleLowerCase().localeCompare(b.name.toLocaleLowerCase()))
+            // this.people = this.people.sort((a, b) => a.age - b.age)
         })
     }
 
