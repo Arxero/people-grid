@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PersonModel } from 'src/app/core/add-person.model';
+import { Person } from 'src/app/core/person.model';
 import { PersonService } from 'src/app/core/person.service';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { animate, state, style, transition, trigger } from '@angular/animations';
@@ -19,7 +19,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 export class TableViewComponent implements OnInit {
     displayedColumns: string[] = ['name', 'age', 'role']
     dataSource: MatTableDataSource<any>
-    people: PersonModel[]
+    people: Person[]
 
     @ViewChild(MatPaginator) paginator: MatPaginator
     @ViewChild(MatSort) sort: MatSort

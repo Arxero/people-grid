@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PersonModel } from './add-person.model';
+import { Person } from './person.model';
 import { HttpHeaders } from '@angular/common/http';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 const URL = 'https://baas.kinvey.com/appdata/kid_Bk0m9gooN/people'
 const APP_KEY = 'kid_Bk0m9gooN'
@@ -16,31 +18,32 @@ const httpOptions = {
     })
 }
 
+
 @Injectable({
     providedIn: 'root'
 })
 
 export class PersonService {
-    constructor(private http:HttpClient){ }
+    constructor(private http: HttpClient) { }
 
-    addPerson(body: PersonModel) {
-        return this.http.post(URL, body, httpOptions)
+    addPerson(body: Person) {
+        return this.http.post(URL, body, httpOptions);
     }
 
-    getPeople() {
-        return this.http.get<PersonModel[]>(URL, httpOptions)
+    getPeople(): Observable<Person[]> {
+        return this.http.get<Person[]>(URL, httpOptions);
     }
 
     getPerson(id: string) {
-        return this.http.get<PersonModel>(URL + '/' + id, httpOptions)
+        return this.http.get<Person>(URL + '/' + id, httpOptions);
     }
 
-    editPerson(id: string, body: PersonModel) {
-        return this.http.put(URL + '/' + id, body, httpOptions)
+    editPerson(id: string, body: Person) {
+        return this.http.put(URL + '/' + id, body, httpOptions);
     }
 
     deletePerson(id: string) {
-        return this.http.delete(URL + '/' + id, httpOptions)
+        return this.http.delete(URL + '/' + id, httpOptions);
     }
 
 }

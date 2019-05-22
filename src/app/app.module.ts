@@ -18,7 +18,17 @@ import { EditComponent } from './components/edit/edit.component';
 import { TableViewComponent } from './components/table-view/table-view.component';
 import { FilterPipe } from './core/filter.pipe';
 import { PersonComponent } from './components/person/person.component';
-
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { PeopleEffects } from './components/people.effects';
+import { peopleReducer } from './components/people.reducers';
+import { Store } from '@ngrx/store';
+import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { CustomSerializer } from './shared/utils';
+//import { PersonResolver } from './core/person.resolver';
 
 @NgModule({
     declarations: [
@@ -39,8 +49,19 @@ import { PersonComponent } from './components/person/person.component';
         ReactiveFormsModule,
         MaterialModule,
         HttpClientModule,
+        EffectsModule.forRoot([]),//making possible to use effects in the project
+        StoreModule.forRoot(reducers, { metaReducers }),//add by ng g store AppState --root --module app.module.ts
+        StoreModule.forFeature('people', peopleReducer),//importing the reducrer, added by ng g reducer components/people --module app.module.ts
+        EffectsModule.forFeature([PeopleEffects]),//importing the effects, added by ng g effect components/people --module app.module.ts
+        !environment.production ? StoreDevtoolsModule.instrument() : [],//dev tools
+        StoreRouterConnectingModule.forRoot({ stateKey: 'router' })//dev tools timetravel
+
     ],
-    providers: [PersonService],
+    providers: [
+        PersonService,
+       // PersonResolver,
+        {provide: RouterStateSerializer, useClass: CustomSerializer}
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

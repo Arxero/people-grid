@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonService } from 'src/app/core/person.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PersonModel } from 'src/app/core/add-person.model';
+import { Person } from 'src/app/core/person.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 
@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material';
     styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-    personModel: PersonModel
+    personModel: Person
     image: string
     editPersonForm : FormGroup
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PersonModel } from 'src/app/core/add-person.model';
+import { Person } from 'src/app/core/person.model';
 import { PersonService } from 'src/app/core/person.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material';
     styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
-    personModel: PersonModel
+    personModel: Person
     image: string
     addPersonForm: FormGroup
 

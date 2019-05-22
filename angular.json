@@ -132,5 +132,8 @@
       }
     }
   },
-  "defaultProject": "people-grid"
+  "defaultProject": "people-grid",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

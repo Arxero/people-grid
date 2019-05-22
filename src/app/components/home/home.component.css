@@ -1,3 +1,18 @@
 .mat-form-field {
     width: 90%;
 }
+
+.spinner-container {
+    padding: 2rem;
+    /* min-height: 500px; */
+    /* background: green; */
+    /* position: absolute; */
+}
+
+.spinner-container mat-spinner {
+    position: absolute;
+    left: 50%;
+    margin-left: -50px;
+    top: 50%;
+    margin-top: -50px;
+}
