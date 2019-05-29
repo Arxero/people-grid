@@ -1,47 +1,66 @@
+import { GridDataResult, DataStateChangeEvent } from '@progress/kendo-angular-grid';
+import { TableViewService } from './table-view.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Person } from 'src/app/core/person.model';
 import { PersonService } from 'src/app/core/person.service';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { State, SortDescriptor } from '@progress/kendo-data-query';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-table-view',
     templateUrl: './table-view.component.html',
     styleUrls: ['./table-view.component.css'],
-    animations: [
-        trigger('detailExpand', [
-            state('collapsed', style({ height: '0px', minHeight: '0', display: 'none' })),
-            state('expanded', style({ height: '*' })),
-            transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-        ]),
-    ],
 })
 export class TableViewComponent implements OnInit {
-    displayedColumns: string[] = ['name', 'age', 'role']
-    dataSource: MatTableDataSource<any>
-    people: Person[]
+    // paging properties
+    total: number;
+    view: Observable<GridDataResult>;
+    state: State = {
+        skip: 0,
+        take: 3,
+    };
 
-    @ViewChild(MatPaginator) paginator: MatPaginator
-    @ViewChild(MatSort) sort: MatSort
+    // sort properties
+    multiple = false;
+    allowUnsort = true;
+    sort: SortDescriptor[] = [{
+        field: '',
+        dir: 'asc'
+    }];
 
-    constructor(private personService: PersonService) {
+    constructor(
+        private tableViewService: TableViewService,
+        private personService: PersonService) {
+        this.view = tableViewService;
+
     }
 
     ngOnInit() {
-        this.personService.getPeople().subscribe(data => {
-            this.people = data
-            this.dataSource = new MatTableDataSource(this.people)
-            this.dataSource.paginator = this.paginator
-            this.dataSource.sort = this.sort
-        })
+        this.loadData();
     }
 
-    applyFilter(filterValue: string) {
-        this.dataSource.filter = filterValue.trim().toLowerCase();
+    loadData() {
+        this.personService.getCollectionTotal().subscribe(data => {
+            this.total = +data['count'];
 
-        if (this.dataSource.paginator) {
-            this.dataSource.paginator.firstPage();
-        }
+            if (this.sort[0].field) {
+                this.tableViewService.query(this.state, this.total, this.sort);
+            } else {
+                this.tableViewService.query(this.state, this.total);
+            }
+        });
     }
 
+    onDataStateChange(state: DataStateChangeEvent): void {
+        this.state = state;
+        this.loadData()
+    }
+
+    onSortChange(sort: SortDescriptor[]) {
+        this.sort = sort;
+        this.loadData();
+    }
 }
+

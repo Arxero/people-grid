@@ -28,6 +28,8 @@ import { peopleReducer } from './components/people.reducers';
 import { Store } from '@ngrx/store';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomSerializer } from './shared/utils';
+import { GridModule } from '@progress/kendo-angular-grid';
+
 //import { PersonResolver } from './core/person.resolver';
 
 @NgModule({
@@ -49,6 +51,7 @@ import { CustomSerializer } from './shared/utils';
         ReactiveFormsModule,
         MaterialModule,
         HttpClientModule,
+        GridModule,
         EffectsModule.forRoot([]),//making possible to use effects in the project
         StoreModule.forRoot(reducers, { metaReducers }),//add by ng g store AppState --root --module app.module.ts
         StoreModule.forFeature('people', peopleReducer),//importing the reducrer, added by ng g reducer components/people --module app.module.ts

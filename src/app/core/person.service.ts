@@ -1,3 +1,4 @@
+import { SortDescriptor } from '@progress/kendo-data-query';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Person } from './person.model';
@@ -30,8 +31,25 @@ export class PersonService {
         return this.http.post(URL, body, httpOptions);
     }
 
-    getPeople(): Observable<Person[]> {
+    getPeople(limit?: number, skip?: number, sort?: SortDescriptor[]): Observable<Person[]> {
+        if (limit || skip) {
+            if (sort && sort[0].dir) {
+                switch (sort[0].dir) {
+                    case 'asc':
+                        return this.http.get<Person[]>(`${URL}?query={}&sort={"${sort[0].field}": 1}&limit=${limit}&skip=${skip}`, httpOptions);
+                    case 'desc':
+                        return this.http.get<Person[]>(`${URL}?query={}&sort={"${sort[0].field}": -1}&limit=${limit}&skip=${skip}`, httpOptions);
+                    default:
+                        return this.http.get<Person[]>(URL, httpOptions);
+                }
+
+            }
+            return this.http.get<Person[]>(`${URL}?query={}&limit=${limit}&skip=${skip}`, httpOptions)
+        }
         return this.http.get<Person[]>(URL, httpOptions);
+    }
+    getCollectionTotal(collection?: string) {
+        return this.http.get<object>(`${URL}/_count`, httpOptions)
     }
 
     getPerson(id: string) {
