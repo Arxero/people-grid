@@ -1,3 +1,4 @@
+import { FormBuilderComponent } from './components/form-builder/form-builder.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
@@ -10,6 +11,7 @@ const routes: Routes = [
     { path: 'add', component: AddComponent },
     { path: 'edit/:id', component: EditComponent },
     { path: 'table-view', component: TableViewComponent },
+    { path: 'form-builder', component: FormBuilderComponent }
 
 ];
 

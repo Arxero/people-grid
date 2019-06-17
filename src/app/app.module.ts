@@ -29,6 +29,7 @@ import { Store } from '@ngrx/store';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomSerializer } from './shared/utils';
 import { GridModule } from '@progress/kendo-angular-grid';
+import { FormBuilderComponent } from './components/form-builder/form-builder.component';
 
 //import { PersonResolver } from './core/person.resolver';
 
@@ -42,6 +43,7 @@ import { GridModule } from '@progress/kendo-angular-grid';
         TableViewComponent,
         FilterPipe,
         PersonComponent,
+        FormBuilderComponent,
     ],
     imports: [
         BrowserModule,
